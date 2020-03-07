@@ -5,7 +5,7 @@ export default class Cart extends Component {
     render() {
         return (
             <div style={cart}>
-                <h1>Navbar</h1>
+                <h1>My cart</h1>
             </div>
         )
     }

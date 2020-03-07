@@ -5,7 +5,7 @@ export default class Login extends Component {
     render() {
         return (
             <div style={login}>
-                <h1>Navbar</h1>
+                <h1>Login form</h1>
             </div>
         )
     }

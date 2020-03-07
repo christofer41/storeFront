@@ -5,7 +5,7 @@ export default class Favorites extends Component {
     render() {
         return (
             <div style={favorites}>
-                <h1>Navbar</h1>
+                <h1>My Wishlist</h1>
             </div>
         )
     }

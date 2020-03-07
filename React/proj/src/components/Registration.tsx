@@ -5,7 +5,7 @@ export default class Registration extends Component {
     render() {
         return (
             <div style={registration}>
-                <h1>Navbar</h1>
+                <h1>Registration form</h1>
             </div>
         )
     }
