@@ -37,8 +37,8 @@ export default class Categories extends Component<Props> {
         return (
             <div style={categories}>
                 {
-                    this.state.categoryList.map(category =>
-                        <CategoryWidget title={category} />
+                    this.state.categoryList.map((category, i) =>
+                        <CategoryWidget key={i} title={category} />
                     )
                 }
             </div>
