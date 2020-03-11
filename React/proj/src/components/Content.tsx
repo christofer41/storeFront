@@ -62,7 +62,7 @@ const search: CSSProperties = {
     border: '1px solid #cccccc',
     padding: '0.2em 0.8em',
 }
-
+// eslint-disable-next-line 
 const categories: CSSProperties = {
     flexGrow: 1
 }
