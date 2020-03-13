@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
-import Categories from './Categories'
+import Categories, {CategoryData} from './Categories'
 import Sidebar from './Sidebar'
 import Products from './Products'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -11,9 +11,8 @@ export default class Content extends Component {
     // temporary solution
     state = {
         activePage: 1,
-        activeCategory: ''
+        activeCategory: {name: '', id: ''}
     }
-
 
     // temporary solution
     switch = () => {
@@ -24,12 +23,14 @@ export default class Content extends Component {
         this.setState({activePage: 1})
     }
 
-    onCategorySelected = (category: string) => {
+    onCategorySelected = (category: CategoryData) => {
         this.setState({activePage: 2})
         this.setState({activeCategory: category})
     }
 
     render() {
+        //let selectedCategory = 'pcmcat158900050008'
+
         let page = <Categories categorySelected={this.onCategorySelected}/>
         if (this.state.activePage === 2) {
             page = <>
@@ -39,7 +40,7 @@ export default class Content extends Component {
                 </div>
                 <div style={productsView}>
                     <Sidebar/>
-                    <Products category={this.state.activeCategory}/>
+                    <Products category={this.state.activeCategory} />
                 </div>
             </>
         }
