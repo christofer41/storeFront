@@ -3,6 +3,8 @@ import {Component, CSSProperties} from 'react';
 import Categories from './Categories'
 import Sidebar from './Sidebar'
 import Products from './Products'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowCircleLeft, faHeart} from '@fortawesome/free-solid-svg-icons'
 
 export default class Content extends Component {
 
@@ -32,8 +34,8 @@ export default class Content extends Component {
         if (this.state.activePage === 2) {
             page = <>
                 <div style={btnBack} onClick={this.switch}>
-                    <FontAwesomeIcon icon={faHeart}/>
-                    Go back
+                    <FontAwesomeIcon icon={faArrowCircleLeft} style={pic}/>
+                    <a>Go back</a>
                 </div>
                 <div style={productsView}>
                     <Sidebar/>
@@ -98,9 +100,16 @@ const btnBack: CSSProperties = {
     width: '6em',
     margin: 'auto',
     marginBottom: '1em',
-    marginTop: '1em'
+    marginTop: '1em',
+    backgroundColor: 'lightgrey',
+    fontSize: '1.5rem',
+    borderRadius: '1em',
+    display: 'flex',
+    alignItems: 'center'
+
 }
 
 const pic: CSSProperties = {
-
+    marginRight: '0.3em',
+    marginLeft: '0.08em'
 }
