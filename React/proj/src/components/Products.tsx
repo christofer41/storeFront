@@ -14,6 +14,7 @@ const productsApiUrl = 'https://api.bestbuy.com/v1/products(categoryPath.id=' + 
 
 
 interface Props {
+    category: string
 }
 
 interface State {
@@ -42,7 +43,7 @@ export default class Products extends Component<Props> {
     render() {
         return (
             <div style={productsView}>
-                <h1>Products</h1>
+                <h1>{this.props.category}</h1>
                 <div style={products}>
                     {
                         this.state.productList.map((product: ProductData, i) =>

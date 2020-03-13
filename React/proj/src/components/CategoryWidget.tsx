@@ -4,12 +4,17 @@ import {Component, CSSProperties} from 'react';
 interface Props {
     title: string
     color: string
+    onClick: (category: string) => void;
 }
 
 export default class CategoryWidget extends Component<Props> {
+    onClick = () => {
+        this.props.onClick(this.props.title)
+    }
+
     render() {
         return (
-            <div style={{...widget, backgroundColor: this.props.color}}>
+            <div style={{...widget, backgroundColor: this.props.color}} onClick={this.onClick}>
                 {this.props.title}
             </div>
         )

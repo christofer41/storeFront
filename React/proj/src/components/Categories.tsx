@@ -12,6 +12,7 @@ const apiKey = 'rVhwWD9xG3DBo1PXD3fWGeAO' // process.env.REACT_APP_BESTBUY_API_K
 const categoriesApiUrl = 'https://api.bestbuy.com/v1/categories(id=abcat0100000)?format=json&&apiKey=' + apiKey
 
 interface Props {
+    categorySelected: (category: string) => void
 }
 
 export default class Categories extends Component<Props> {
@@ -45,7 +46,8 @@ export default class Categories extends Component<Props> {
             <div style={categories}>
                 {
                     this.state.categoryList.map((category, i) =>
-                        <CategoryWidget key={i} title={category} color={this.getColor(i)}/>
+                        <CategoryWidget key={i} title={category} color={this.getColor(i)}
+                                        onClick={this.props.categorySelected}/>
                     )
                 }
             </div>

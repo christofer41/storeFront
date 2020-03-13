@@ -8,26 +8,38 @@ export default class Content extends Component {
 
     // temporary solution
     state = {
-        activePage: 1
+        activePage: 1,
+        activeCategory: ''
     }
 
 
     // temporary solution
     switch = () => {
         if (this.state.activePage === 1) {
-            this.setState({ activePage: 2})
+            this.setState({activePage: 2})
             return
         }
-        this.setState({ activePage: 1})
+        this.setState({activePage: 1})
+    }
+
+    onCategorySelected = (category: string) => {
+        this.setState({activePage: 2})
+        this.setState({activeCategory: category})
     }
 
     render() {
-        let page = <Categories />
+        let page = <Categories categorySelected={this.onCategorySelected}/>
         if (this.state.activePage === 2) {
-            page = <div style={productsView}>
-                <Sidebar />
-                <Products />
-            </div>
+            page = <>
+                <div style={btnBack} onClick={this.switch}>
+                    <FontAwesomeIcon icon={faHeart}/>
+                    Go back
+                </div>
+                <div style={productsView}>
+                    <Sidebar/>
+                    <Products category={this.state.activeCategory}/>
+                </div>
+            </>
         }
 
         return (
@@ -36,11 +48,10 @@ export default class Content extends Component {
                     <div style={logo}>LOGO</div>
                     <div style={subtitle}>subtitle about the shop</div>
                     <div>
-                        <input style={search} type="text" placeholder="Search" />
+                        <input style={search} type="text" placeholder="Search"/>
                     </div>
-                <button onClick={this.switch}>Switch</button>
                 </div>
-                { page }
+                {page}
             </div>
         )
     }
@@ -81,4 +92,15 @@ const subtitle: CSSProperties = {
 
 const productsView: CSSProperties = {
     display: 'flex'
+}
+
+const btnBack: CSSProperties = {
+    width: '6em',
+    margin: 'auto',
+    marginBottom: '1em',
+    marginTop: '1em'
+}
+
+const pic: CSSProperties = {
+
 }
