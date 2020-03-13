@@ -6,7 +6,7 @@ import Products from './Products'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowCircleLeft, faHeart} from '@fortawesome/free-solid-svg-icons'
 
-export default class Content extends Component {
+export default class Content extends Component <{addMeat: (id:string) => void}> {
 
     // temporary solution
     state = {
@@ -49,6 +49,7 @@ export default class Content extends Component {
             <div style={content}>
                 <div style={header}>
                     <div style={logo}>LOGO</div>
+                    <h1 onClick={() => this.props.addMeat(this.id)}>Press me to add meat to the cart!</h1>
                     <div style={subtitle}>subtitle about the shop</div>
                     <div>
                         <input style={search} type="text" placeholder="Search"/>
@@ -58,6 +59,7 @@ export default class Content extends Component {
             </div>
         )
     }
+    id = "meat"
 }
 
 const content: CSSProperties = {

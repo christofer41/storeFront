@@ -6,26 +6,23 @@ export default class Counter extends React.Component<{ counter:any, onDelete:any
     render() { 
         return (
         <div style={singleCounterStyle}>
-            <h2>{this.props.counter.id}</h2>
-            <span style={styles} className={this.getClassName()}>{this.formatCount()}</span>
-            <button style={giveMargin} onClick={() => this.props.onAdd(this.props.counter)}>Plus one</button>
-            <button style={giveMargin} onClick={() => this.props.onMinus(this.props.counter, this.props.counter.id)}>Minus one</button>
-            <button style={giveMargin} onClick={() => this.props.onDelete(this.props.counter.id)}>Delete</button>
+            <div style={textDiv}>
+                <h2>{this.props.counter.id}</h2>
+                <h2 style={styles}>{this.formatCount()}</h2>
+            </div>
+            <div style={buttonDiv}>
+                <button style={buttonStyle} onClick={() => this.props.onAdd(this.props.counter)}>Plus one</button>
+                <button style={buttonStyle} onClick={() => this.props.onMinus(this.props.counter, this.props.counter.id)}>Minus one</button>
+                <button style={buttonStyle} onClick={() => this.props.onDelete(this.props.counter.id)}>Delete</button>
+            </div>
         </div>
         );
-    }
-
-    //Depending if the numbers are zero or over zero, the classes will change
-    private getClassName() {
-        let classes = "state";
-        classes += (this.props.counter.value === 0) ? "Zero" : "OverZero";
-        return classes;
     }
     
     //If the count is zero then it will display an h1 saying so, otherwise it will just display the count number
     private formatCount() {
         const {value: count} = this.props.counter;
-        return count === 0 ? <h1>Zero</h1> : <h1>{count}</h1>
+        return <React.Fragment>{count}</React.Fragment>
     }
 };
 
@@ -36,9 +33,30 @@ const singleCounterStyle: React.CSSProperties = {
 }
 
 const styles:React.CSSProperties = {
-    fontSize: "20px",
+    fontSize: "30px",
+    marginLeft: "10px"
 };
 
-const giveMargin: React.CSSProperties = {
-    margin: "10px"
+const buttonStyle: React.CSSProperties = {
+    margin: "5px",
+    height: "40px",
+    width: "60px",
+};
+
+const buttonDiv: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "none",
+    marginLeft: "5px"
+};
+
+const textDiv: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "none",
+    marginRight: "5px"
 };
