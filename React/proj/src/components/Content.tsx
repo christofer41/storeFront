@@ -4,14 +4,14 @@ import Categories from './Categories'
 import Sidebar from './Sidebar'
 import Products from './Products'
 
-export default class Content extends Component {
-
+export default class Content extends Component <{addMeat: (id:string) => void}> {
+    
     // temporary solution
     state = {
         activePage: 1
     }
-
-
+    
+    
     // temporary solution
     switch = () => {
         if (this.state.activePage === 1) {
@@ -20,7 +20,7 @@ export default class Content extends Component {
         }
         this.setState({ activePage: 1})
     }
-
+    
     render() {
         let page = <Categories />
         if (this.state.activePage === 2) {
@@ -29,11 +29,12 @@ export default class Content extends Component {
                 <Products />
             </div>
         }
-
+        
         return (
             <div style={content}>
                 <div style={header}>
                     <div style={logo}>LOGO</div>
+                    <h1 onClick={() => this.props.addMeat(this.id)}>Press me to add meat to the cart!</h1>
                     <div style={subtitle}>subtitle about the shop</div>
                     <div>
                         <input style={search} type="text" placeholder="Search" />
@@ -44,6 +45,7 @@ export default class Content extends Component {
             </div>
         )
     }
+    id = "meat"
 }
 
 const content: CSSProperties = {
