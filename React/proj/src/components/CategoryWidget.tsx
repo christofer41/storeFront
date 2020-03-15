@@ -1,16 +1,23 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
+import {CategoryData} from './Categories'
+
 
 interface Props {
-    title: string
+    data: CategoryData
     color: string
+    onClick: (category: CategoryData) => void;
 }
 
 export default class CategoryWidget extends Component<Props> {
+    onClick = () => {
+        this.props.onClick(this.props.data)
+    }
+
     render() {
         return (
-            <div style={{...widget, backgroundColor: this.props.color}}>
-                {this.props.title}
+            <div style={{...widget, backgroundColor: this.props.color}} onClick={this.onClick}>
+                {this.props.data.name}
             </div>
         )
     }

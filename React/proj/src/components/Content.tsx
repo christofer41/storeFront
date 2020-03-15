@@ -1,35 +1,50 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
-import Categories from './Categories'
+import Categories, {CategoryData} from './Categories'
 import Sidebar from './Sidebar'
 import Products from './Products'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowCircleLeft, faHeart} from '@fortawesome/free-solid-svg-icons'
 
 export default class Content extends Component <{addMeat: (id:string) => void}> {
-    
+
     // temporary solution
     state = {
-        activePage: 1
+        activePage: 1,
+        activeCategory: {name: '', id: ''}
     }
-    
-    
+
     // temporary solution
     switch = () => {
         if (this.state.activePage === 1) {
-            this.setState({ activePage: 2})
+            this.setState({activePage: 2})
             return
         }
-        this.setState({ activePage: 1})
+        this.setState({activePage: 1})
     }
-    
+
+    onCategorySelected = (category: CategoryData) => {
+        this.setState({activePage: 2})
+        this.setState({activeCategory: category})
+    }
+
     render() {
-        let page = <Categories />
+        //let selectedCategory = 'pcmcat158900050008'
+
+        let page = <Categories categorySelected={this.onCategorySelected}/>
         if (this.state.activePage === 2) {
-            page = <div style={productsView}>
-                <Sidebar />
-                <Products />
-            </div>
+            page = <>
+                <div style={btnBack} onClick={this.switch}>
+                    <FontAwesomeIcon icon={faArrowCircleLeft} style={pic}/>
+                    <a>Go back</a>
+                </div>
+                <div style={productsView}>
+                    <Sidebar/>
+                    <Products category={this.state.activeCategory} />
+                </div>
+            </>
         }
-        
+
         return (
             <div style={content}>
                 <div style={header}>
@@ -37,11 +52,10 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
                     <h1 onClick={() => this.props.addMeat(this.id)}>Press me to add meat to the cart!</h1>
                     <div style={subtitle}>subtitle about the shop</div>
                     <div>
-                        <input style={search} type="text" placeholder="Search" />
+                        <input style={search} type="text" placeholder="Search"/>
                     </div>
-                <button onClick={this.switch}>Switch</button>
                 </div>
-                { page }
+                {page}
             </div>
         )
     }
@@ -83,4 +97,22 @@ const subtitle: CSSProperties = {
 
 const productsView: CSSProperties = {
     display: 'flex'
+}
+
+const btnBack: CSSProperties = {
+    width: '6em',
+    margin: 'auto',
+    marginBottom: '1em',
+    marginTop: '1em',
+    backgroundColor: 'lightgrey',
+    fontSize: '1.5rem',
+    borderRadius: '1em',
+    display: 'flex',
+    alignItems: 'center'
+
+}
+
+const pic: CSSProperties = {
+    marginRight: '0.3em',
+    marginLeft: '0.08em'
 }

@@ -4,6 +4,12 @@ import CategoryWidget from './CategoryWidget'
 
 import axios from 'axios'
 
+export interface CategoryData {
+    name: string
+    id: string
+}
+
+
 // colors from https://colorhunt.co/
 const widgetColors = ['#918ba7', '#f18867', '#e85f99', '#50bda1', '#a8e6cf', '#dcedc1',
     '#ffd3b6', '#ffaaa5']
@@ -12,6 +18,7 @@ const apiKey = 'rVhwWD9xG3DBo1PXD3fWGeAO' // process.env.REACT_APP_BESTBUY_API_K
 const categoriesApiUrl = 'https://api.bestbuy.com/v1/categories(id=abcat0100000)?format=json&&apiKey=' + apiKey
 
 interface Props {
+    categorySelected: (category: CategoryData) => void
 }
 
 export default class Categories extends Component<Props> {
@@ -22,15 +29,14 @@ export default class Categories extends Component<Props> {
             .then((response) => {
                 if (response != null && response.data != null) {
                     console.log('response.data:', response.data)
-                    const listOfTVSubcategories = response.data.categories[0].subCategories
-                    const names = listOfTVSubcategories.map((item: any) => item.name)
-                    this.setState({categoryList: names})
+                    const listOfTVSubcategories: Array<CategoryData> = response.data.categories[0].subCategories
+                    this.setState({categoryList: listOfTVSubcategories})
                 }
             })
     }
 
     state = {
-        categoryList: ['', '', '']
+        categoryList: []
     }
 
     getColor = (i: number) => {
@@ -44,8 +50,9 @@ export default class Categories extends Component<Props> {
         return (
             <div style={categories}>
                 {
-                    this.state.categoryList.map((category, i) =>
-                        <CategoryWidget key={i} title={category} color={this.getColor(i)}/>
+                    // i - number of element in category list [0 .. N]
+                    this.state.categoryList.map((category: CategoryData, i) =>
+                        <CategoryWidget data={category} color={this.getColor(i)} onClick={this.props.categorySelected}/>
                     )
                 }
             </div>
