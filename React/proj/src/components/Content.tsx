@@ -62,7 +62,7 @@ export default class Content extends Component<Props> {
             <div style={content}>
                 <div style={header}>
                     <div style={logo}>Natalia and Coffe's store for awesome people</div>
-                    <div style={subtitle}>The title says it all</div>
+                    <div style={subtitle}>The best home essentials</div>
                     <div>
                         <input style={search} type="text" placeholder="Search"/>
                     </div>
