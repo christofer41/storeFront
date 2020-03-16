@@ -3,7 +3,7 @@ import {Component, CSSProperties} from 'react';
 import Navbar from './Navbar'
 import Content from './Content'
 import Footer from './Footer'
-import Counters from "../ShoppingCart/shoppingCart"
+import Counters from '../ShoppingCart/shoppingCart'
 import {ProductData} from './ProductWidget'
 
 export interface theShoppingCart {
@@ -20,31 +20,28 @@ export default class Layout extends Component <{}, State> {
 
     state = {
         hideCart: true,
-        counters: [
-            { id: "vegetables", value: 1},
-        ]
+        counters: new Array<theShoppingCart>()
     }
 
     render() {
         return (
             <div style={layout}>
-                <Navbar handleCart={this.displayCart} />
-                {!this.state.hideCart ? <Counters 
-                    products={this.state.counters} 
-                    incrementProduct={this.incrementProduct} 
-                    minusProduct={this.minusProduct} 
-                    deleteProduct={this.deleteProduct} /> : null}
-                <Content onCartIconClick={this.addToTheCart} />
-                <Footer />
+                <Navbar handleCart={this.displayCart}/>
+                {!this.state.hideCart ? <Counters
+                    products={this.state.counters}
+                    incrementProduct={this.incrementProduct}
+                    minusProduct={this.minusProduct}
+                    deleteProduct={this.deleteProduct}/> : null}
+                <Content onCartIconClick={this.addToTheCart}/>
+                <Footer/>
             </div>
         )
     }
 
-    displayCart = () => { 
+    displayCart = () => {
         if (this.state.hideCart === true) {
             this.setState({hideCart: false})
-        }
-        else {
+        } else {
             this.setState({hideCart: true})
         }
         console.log(this.state.hideCart);
@@ -52,24 +49,21 @@ export default class Layout extends Component <{}, State> {
     }
 
     addToTheCart = (selectedProduct: ProductData) => {
-        
-        let productList = this.state.counters
-        let number = 0;
-        
-        productList.forEach((product: theShoppingCart) => {
 
-            if(product.id === selectedProduct.name) {
+        let productList = this.state.counters
+        let wasProductAddedToCart = false
+
+        productList.forEach((product: theShoppingCart) => {
+            if (product.id === selectedProduct.name) {
                 product.value++
-                console.log("two")
-            }
-            if(product.id !== selectedProduct.name) {
-                number++
-            }
-            if (number === this.state.counters.length) {                
-                this.state.counters.push({id: selectedProduct.name, value: 1})
-                console.log("one")
+                wasProductAddedToCart = true
             }
         })
+
+        if (!wasProductAddedToCart) {
+            this.state.counters.push({id: selectedProduct.name, value: 1})
+        }
+
         this.setState({
             counters: productList
         })
@@ -80,7 +74,7 @@ export default class Layout extends Component <{}, State> {
         let productList = this.state.counters
 
         productList.forEach((product: theShoppingCart) => {
-            if(product.id === id) {
+            if (product.id === id) {
                 product.value++
             }
         })
@@ -90,21 +84,21 @@ export default class Layout extends Component <{}, State> {
         })
     }
 
-    minusProduct = (id:string) => {
+    minusProduct = (id: string) => {
         let productList = this.state.counters
 
         productList.forEach((product: theShoppingCart) => {
-            if(product.id === id) {
+            if (product.id === id) {
                 product.value--
             }
         })
-        
+
         this.setState({
             counters: productList
         })
     }
 
-    deleteProduct = (id:string) => {
+    deleteProduct = (id: string) => {
         const counters = this.state.counters.filter(c => c.id !== id);
         this.setState({counters});
     }
@@ -115,5 +109,5 @@ const layout: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-    backgroundColor: "#deebf0"
+    backgroundColor: '#deebf0'
 }
