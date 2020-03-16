@@ -47,7 +47,7 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
                     <a>Go back</a>
                 </div>
                 <div style={productsView}>
-                    <Sidebar categoryList={this.state.categoryListCopy} />
+                    <Sidebar categoryList={this.state.categoryListCopy} categorySelected={this.onCategorySelected} />
                     <Products category={this.state.activeCategory} />
                 </div>
             </>

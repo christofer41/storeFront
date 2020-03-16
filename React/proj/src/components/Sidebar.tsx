@@ -1,17 +1,20 @@
-import * as React from 'react';
-import reactCSS, {hover} from 'reactcss';
+import React, {MouseEvent} from 'react';
 import {Component, CSSProperties} from 'react';
-import CategoryWidget from './CategoryWidget'
 import {CategoryData} from './Categories'
-import {inherits} from 'util'
 
 interface Props {
     categoryList: Array<CategoryData>
+    categorySelected: (category: CategoryData) => void
 }
 
 export default class Sidebar extends Component<Props> {
     constructor(props: Props) {
         super(props);
+    }
+
+    onClick = (key: number) => {
+        const selected = this.props.categoryList[key]
+        this.props.categorySelected(selected)
     }
 
     render() {
@@ -21,7 +24,11 @@ export default class Sidebar extends Component<Props> {
                 <ul style={categoryListCss}>
                     {
                         this.props.categoryList.map((category: CategoryData, i) =>
-                            <li key={i} style={indCategoryListCss}>{category.name}</li>
+                            // onClick - has inlined function that knows local "i" (number of category object in list)
+                            <li id={'category' + i} key={i} style={indCategoryListCss}
+                                onClick={ () => { this.onClick(i) } }>
+                                {category.name}
+                            </li>
                         )
                     }
                 </ul>
