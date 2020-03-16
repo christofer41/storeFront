@@ -3,6 +3,7 @@ import {Component, CSSProperties} from 'react';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
 
 export default class Navbar extends Component <{handleCart: () => void}> {

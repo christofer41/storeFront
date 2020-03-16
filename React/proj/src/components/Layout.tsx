@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import Content from './Content'
 import Footer from './Footer'
 import Counters from "../ShoppingCart/shoppingCart"
+import {ProductData} from './ProductWidget'
 
 export interface theShoppingCart {
     id: string,
@@ -33,7 +34,7 @@ export default class Layout extends Component <{}, State> {
                     incrementProduct={this.incrementProduct} 
                     minusProduct={this.minusProduct} 
                     deleteProduct={this.deleteProduct} /> : null}
-                <Content addMeat={this.addToTheCart} />
+                <Content onCartIconClick={this.addToTheCart} />
                 <Footer />
             </div>
         )
@@ -50,22 +51,22 @@ export default class Layout extends Component <{}, State> {
 
     }
 
-    addToTheCart = (addMeat:string) => {
+    addToTheCart = (selectedProduct: ProductData) => {
         
         let productList = this.state.counters
         let number = 0;
         
         productList.forEach((product: theShoppingCart) => {
 
-            if(product.id === addMeat) {
+            if(product.id === selectedProduct.name) {
                 product.value++
                 console.log("two")
             }
-            if(product.id !== addMeat) {
+            if(product.id !== selectedProduct.name) {
                 number++
             }
             if (number === this.state.counters.length) {                
-                this.state.counters.push({id: addMeat, value: 1})
+                this.state.counters.push({id: selectedProduct.name, value: 1})
                 console.log("one")
             }
         })

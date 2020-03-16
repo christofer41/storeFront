@@ -8,6 +8,7 @@ const apiKey = 'rVhwWD9xG3DBo1PXD3fWGeAO' // process.env.REACT_APP_BESTBUY_API_K
 
 interface Props {
     category: CategoryData
+    onCartIconClick: (product: ProductData) => void
 }
 
 interface State {
@@ -63,7 +64,7 @@ export default class Products extends Component<Props> {
 
         if (this.state.productList.length > 0) {
             availableProducts = this.state.productList.map((product: ProductData, i) =>
-                        <ProductWidget key={i} productData={product}/>)
+                        <ProductWidget key={i} productData={product} onCartIconClick={this.props.onCartIconClick} />)
         }
 
         return (

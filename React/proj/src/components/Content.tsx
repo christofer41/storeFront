@@ -5,8 +5,13 @@ import Sidebar from './Sidebar'
 import Products from './Products'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowCircleLeft, faHeart} from '@fortawesome/free-solid-svg-icons'
+import {ProductData} from './ProductWidget'
 
-export default class Content extends Component <{addMeat: (id:string) => void}> {
+interface Props {
+    onCartIconClick: (product: ProductData) => void
+}
+
+export default class Content extends Component<Props> {
 
     // temporary solution
     state = {
@@ -48,7 +53,7 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
                 </div>
                 <div style={productsView}>
                     <Sidebar categoryList={this.state.categoryListCopy} categorySelected={this.onCategorySelected} />
-                    <Products category={this.state.activeCategory} />
+                    <Products category={this.state.activeCategory} onCartIconClick={this.props.onCartIconClick} />
                 </div>
             </>
         }
@@ -57,7 +62,6 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
             <div style={content}>
                 <div style={header}>
                     <div style={logo}>Natalia and Coffe's store for awesome people</div>
-                    <h1 onClick={() => this.props.addMeat(this.id)}>Press me to add meat to the cart!</h1>
                     <div style={subtitle}>The title says it all</div>
                     <div>
                         <input style={search} type="text" placeholder="Search"/>
