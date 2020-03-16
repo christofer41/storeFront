@@ -11,9 +11,15 @@ export interface ProductData {
 
 interface Props {
     productData: ProductData
+    onCartIconClick: (product: ProductData) => void
 }
 
 export default class ProductWidget extends Component<Props> {
+
+    onCartIconClick = () => {
+        this.props.onCartIconClick(this.props.productData)
+    }
+
     render() {
         // make product name no longer than N letters
         const N = 45
@@ -22,6 +28,8 @@ export default class ProductWidget extends Component<Props> {
             name = name.substr(0, N) + '...'
         }
 
+
+
         return (
             <div style={widget}>
                 <img style={pic} src={this.props.productData.image} alt={this.props.productData.name}/>
@@ -29,7 +37,7 @@ export default class ProductWidget extends Component<Props> {
                     <div style={description}>{name}</div>
                     <div style={icons}>
                         <FontAwesomeIcon icon={faHeart}/>
-                        <FontAwesomeIcon icon={faCartPlus}/>
+                        <FontAwesomeIcon icon={faCartPlus} onClick={this.onCartIconClick}/>
                     </div>
                 </div>
             </div>
