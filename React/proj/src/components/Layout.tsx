@@ -62,6 +62,7 @@ export default class Layout extends Component <{}, State> {
 
         if (!wasProductAddedToCart) {
             this.state.counters.push({id: selectedProduct.name, value: 1})
+            alert('Product successfully added to your cart!')
         }
 
         this.setState({
