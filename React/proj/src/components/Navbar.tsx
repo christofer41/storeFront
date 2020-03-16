@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {Component, CSSProperties} from 'react';
 
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+
 
 export default class Navbar extends Component <{handleCart: () => void}> {
     render() {
         return (
             <div style={navbar}>
-                <h1>Navbar</h1>
-                <h4 onClick={() => this.props.handleCart()}>Shopping Cart</h4>
+                <FontAwesomeIcon size="2x" icon={faShoppingCart} onClick={() => this.props.handleCart()} />
             </div>
         )
     }
@@ -15,7 +17,10 @@ export default class Navbar extends Component <{handleCart: () => void}> {
 
 const navbar: CSSProperties = {
     height: '4rem',
-    backgroundColor: '#dddddd',
+    backgroundColor: "#3789c5",
     display: "flex",
-    justifyContent: "space-between"
+    alignItems: "center",
+    justifyContent: "center",
+    border: "4px solid white",
+    borderRadius: "12px"
 }

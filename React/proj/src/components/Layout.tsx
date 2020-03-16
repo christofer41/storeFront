@@ -32,8 +32,7 @@ export default class Layout extends Component <{}, State> {
                     products={this.state.counters} 
                     incrementProduct={this.incrementProduct} 
                     minusProduct={this.minusProduct} 
-                    deleteProduct={this.deleteProduct} 
-                    resetProduct={this.resetProduct} /> : null}
+                    deleteProduct={this.deleteProduct} /> : null}
                 <Content addMeat={this.addToTheCart} />
                 <Footer />
             </div>
@@ -109,17 +108,11 @@ export default class Layout extends Component <{}, State> {
         this.setState({counters});
     }
 
-    resetProduct = () => {
-        const counters = this.state.counters.map(c => {
-            c.value= 0; 
-            return c;
-        });
-        this.setState({counters});
-    }
 }
 
 const layout: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh'
+    minHeight: '100vh',
+    backgroundColor: "#deebf0"
 }

@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'animaece';
+    src: url(./fonts/animeace.ttf), format('truetype');
+  };
+
+  @font-face {
+    font-family: 'wonderland';
+    src: url(./fonts/Beyond\ Wonderland.ttf), format('truetype');
+  };
+
+  @font-face {
+    font-family: 'nouvella';
+    src:  url(./fonts/minya\ nouvelle\ rg.ttf), format('truetype');
+  };
