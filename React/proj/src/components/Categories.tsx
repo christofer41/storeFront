@@ -52,7 +52,7 @@ export default class Categories extends Component<Props> {
                 {
                     // i - number of element in category list [0 .. N]
                     this.state.categoryList.map((category: CategoryData, i) =>
-                        <CategoryWidget data={category} color={this.getColor(i)} onClick={this.props.categorySelected}/>
+                        <CategoryWidget key={i} data={category} color={this.getColor(i)} onClick={this.props.categorySelected}/>
                     )
                 }
             </div>
@@ -66,5 +66,7 @@ const categories: CSSProperties = {
     flexDirection: 'row',
     justifyContent: 'center',
     margin: '2rem 0',
+    fontFamily: "Calibri",
+    fontWeight: "bold"
     // backgroundColor: '#f0f0f0'
 }

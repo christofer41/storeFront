@@ -9,11 +9,10 @@ interface Props {
     incrementProduct: (id: string) => void,
     minusProduct: (id: string) => void,
     deleteProduct: (id: string) => void,
-    resetProduct: () => void
 }
 
 
-export default class Counters extends Component <Props, {resetProduct: any} >{
+export default class Counters extends Component <Props, {} >{
 
 
     render() { 
@@ -22,7 +21,6 @@ export default class Counters extends Component <Props, {resetProduct: any} >{
             <div style={ countersStyle}>
                 <div style={theShoppingCarts}>
                     <h2 style={giveMargin}>You have this many different items: {this.props.products.filter(c => c.value > 0).length}</h2>
-                    <button style={giveMargin} onClick={() => {this.props.resetProduct()}}>Reset</button>
                     {this.props.products.map(counter => (
                     <Counter key={counter.id} 
                         onDelete={() => {this.props.deleteProduct(counter.id)}} 
@@ -44,17 +42,19 @@ const countersStyle: React.CSSProperties = {
     bottom: "10vh",
     left: "10vw",
     right: "10vw",
-    border: "2px solid red",
-    backgroundColor: "white",
+    border: "2px solid white",
+    borderRadius: "12px" ,
+    backgroundColor: "#deebf0",
     textAlign: "center",
-    overflow: "scroll"
+    overflow: "scroll",
+    
 }
 
 const theShoppingCarts: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    justifySelf: "center"
+    justifySelf: "center",
 }
 
 const giveMargin: React.CSSProperties = {

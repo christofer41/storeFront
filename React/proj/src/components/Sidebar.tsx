@@ -10,10 +10,10 @@ export default class Sidebar extends Component {
         return (
             <div style={sidebar}>
                 <h2>Categories</h2>
-                <ul>
+                <ul style={categoryListCss}>
                     {
                         categoryList.map(category =>
-                            <li>{category}</li>
+                            <li style={indCategoryListCss}>{category}</li>
                         )
                     }
                 </ul>
@@ -24,7 +24,24 @@ export default class Sidebar extends Component {
 
 const sidebar: CSSProperties = {
     fontSize: '1.2rem',
-    backgroundColor: '#d8d8d8',
+    backgroundColor: '#d7e3ed',
     width: '300px',
     minWidth: '250px',
+    border: "2px solid white",
+    borderRadius: "12px",
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    fontFamily: "Calibri",
+    fontWeight: "bold"
+}
+
+const categoryListCss: CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "20px"
+}
+
+const indCategoryListCss: CSSProperties = {
+    margin: "4px"
 }
