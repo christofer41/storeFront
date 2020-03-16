@@ -48,9 +48,9 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
         return (
             <div style={content}>
                 <div style={header}>
-                    <div style={logo}>LOGO</div>
+                    <div style={logo}>Natalia and Coffe's store for awesome people</div>
                     <h1 onClick={() => this.props.addMeat(this.id)}>Press me to add meat to the cart!</h1>
-                    <div style={subtitle}>subtitle about the shop</div>
+                    <div style={subtitle}>The title says it all</div>
                     <div>
                         <input style={search} type="text" placeholder="Search"/>
                     </div>
@@ -69,7 +69,10 @@ const content: CSSProperties = {
 }
 
 const header: CSSProperties = {
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: "#43a1db",
+    border: "4px solid white",
+    borderRadius: "12px"
 }
 
 const search: CSSProperties = {
@@ -84,9 +87,13 @@ const categories: CSSProperties = {
 }
 
 const logo: CSSProperties = {
-    fontSize: '5rem',
+    fontSize: '4rem',
     marginTop: '0.5em',
-    marginBottom: '0.2em'
+    marginBottom: '0.2em',
+    fontFamily: "Constantia",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    textShadow: "2px 2px gray"
 }
 
 const subtitle: CSSProperties = {
