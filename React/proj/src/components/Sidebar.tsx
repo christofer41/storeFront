@@ -1,19 +1,27 @@
 import * as React from 'react';
+import reactCSS, {hover} from 'reactcss';
 import {Component, CSSProperties} from 'react';
 import CategoryWidget from './CategoryWidget'
+import {CategoryData} from './Categories'
+import {inherits} from 'util'
 
-const categoryList = ['vegetables', 'fruits', 'grocery', 'bakery', 'meat', 'confectionery',
-    'drinks', 'bakery', 'diary', 'baby', 'toys', 'health', 'pets', 'household']
+interface Props {
+    categoryList: Array<CategoryData>
+}
 
-export default class Sidebar extends Component {
+export default class Sidebar extends Component<Props> {
+    constructor(props: Props) {
+        super(props);
+    }
+
     render() {
         return (
             <div style={sidebar}>
                 <h2>Categories</h2>
                 <ul style={categoryListCss}>
                     {
-                        categoryList.map(category =>
-                            <li style={indCategoryListCss}>{category}</li>
+                        this.props.categoryList.map((category: CategoryData, i) =>
+                            <li key={i} style={indCategoryListCss}>{category.name}</li>
                         )
                     }
                 </ul>
@@ -25,23 +33,27 @@ export default class Sidebar extends Component {
 const sidebar: CSSProperties = {
     fontSize: '1.2rem',
     backgroundColor: '#d7e3ed',
-    width: '300px',
+    width: '350px',
     minWidth: '250px',
-    border: "2px solid white",
-    borderRadius: "12px",
-    textAlign: "center",
-    display: "flex",
-    flexDirection: "column",
-    fontFamily: "Calibri",
-    fontWeight: "bold"
+    border: '2px solid white',
+    borderRadius: '12px',
+    textAlign: 'left',
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: 'Calibri, serif',
+    fontWeight: 'bold',
+    padding: '1em 1.5em',
 }
 
 const categoryListCss: CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "20px"
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: '20px'
 }
 
 const indCategoryListCss: CSSProperties = {
-    margin: "4px"
+    padding: '0.5em 0',
+    fontSize: '1rem',
+    listStyle: 'none',
+    userSelect: 'none'
 }
