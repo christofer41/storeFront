@@ -31,7 +31,8 @@ export default class Layout extends Component <{}, State> {
                     products={this.state.counters}
                     incrementProduct={this.incrementProduct}
                     minusProduct={this.minusProduct}
-                    deleteProduct={this.deleteProduct}/> : null}
+                    deleteProduct={this.deleteProduct}
+                    displayCart={this.displayCart} /> : null}
                 <Content onCartIconClick={this.addToTheCart}/>
                 <Footer/>
             </div>

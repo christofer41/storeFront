@@ -69,7 +69,7 @@ export default class Products extends Component<Props> {
 
         return (
             <div style={productsView}>
-                <h1>{this.props.category.name}</h1>
+                <h1 style={title}>{this.props.category.name}</h1>
                 <div style={products}>
                     {availableProducts}
                 </div>
@@ -82,6 +82,10 @@ const productsView: CSSProperties = {
     flexGrow: 1,
 }
 
+const title: CSSProperties = {
+    paddingLeft: '1em',
+}
+
 const products: CSSProperties = {
     flexGrow: 1,
 
@@ -90,14 +94,17 @@ const products: CSSProperties = {
     flexDirection: 'row',
     justifyContent: 'center',
     margin: '2rem 0',
-    backgroundColor: '#f0f0f0'
+    backgroundColor: '#f0f0f0',
+    border: '2px solid white',
+    borderRadius: '12px',
 }
 
 const banner: CSSProperties = {
     height: '500px',
     width: '100%',
-    backgroundColor: 'salmon',
+    backgroundColor: '#ffc9c2',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius: '12px',
 }
