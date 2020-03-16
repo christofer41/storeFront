@@ -19,6 +19,7 @@ const categoriesApiUrl = 'https://api.bestbuy.com/v1/categories(id=abcat0100000)
 
 interface Props {
     categorySelected: (category: CategoryData) => void
+    onCategoriesLoaded: (list: Array<CategoryData>) => void
 }
 
 export default class Categories extends Component<Props> {
@@ -31,6 +32,7 @@ export default class Categories extends Component<Props> {
                     console.log('response.data:', response.data)
                     const listOfTVSubcategories: Array<CategoryData> = response.data.categories[0].subCategories
                     this.setState({categoryList: listOfTVSubcategories})
+                    this.props.onCategoriesLoaded(this.state.categoryList)
                 }
             })
     }
