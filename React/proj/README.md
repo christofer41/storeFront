@@ -1,11 +1,14 @@
 # Store Front Project
 
-## Getting startred
+## Getting started
 
-### `npm install`
+npm install
 
-### `npm run start`
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/react-fontawesome
 
+npm run start
 
 
 ## Open API
