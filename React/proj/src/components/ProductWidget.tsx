@@ -11,9 +11,15 @@ export interface ProductData {
 
 interface Props {
     productData: ProductData
+    onCartIconClick: (product: ProductData) => void
 }
 
 export default class ProductWidget extends Component<Props> {
+
+    onCartIconClick = () => {
+        this.props.onCartIconClick(this.props.productData)
+    }
+
     render() {
         // make product name no longer than N letters
         const N = 45
@@ -22,6 +28,8 @@ export default class ProductWidget extends Component<Props> {
             name = name.substr(0, N) + '...'
         }
 
+
+
         return (
             <div style={widget}>
                 <img style={pic} src={this.props.productData.image} alt={this.props.productData.name}/>
@@ -29,7 +37,8 @@ export default class ProductWidget extends Component<Props> {
                     <div style={description}>{name}</div>
                     <div style={icons}>
                         <FontAwesomeIcon icon={faHeart}/>
-                        <FontAwesomeIcon icon={faCartPlus}/>
+                        <FontAwesomeIcon style={cart} icon={faCartPlus} onClick={this.onCartIconClick}/>
+                        <div style={price}>{this.props.productData.salePrice}</div>
                     </div>
                 </div>
             </div>
@@ -53,6 +62,7 @@ const pic: CSSProperties = {
     maxHeight: '70%',
     flexGrow: 1,
     padding: '1rem 1rem',
+    objectFit: 'contain'
 }
 
 const details: CSSProperties = {
@@ -60,14 +70,28 @@ const details: CSSProperties = {
     padding: '1rem 1rem',
     backgroundColor: '#f5f5f5',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    paddingBottom: '0.5rem'
 }
 
 const icons: CSSProperties = {
-    height: '13px',
-    color: 'green'
+    height: '2rem',
+    color: '#a0a0a0',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    fontSize: '1.5rem'
+
 }
 
 const description: CSSProperties = {
     flexGrow: 1
+}
+
+const cart: CSSProperties = {
+    color: '#444444'
+}
+
+const price: CSSProperties = {
+    color: 'red'
 }

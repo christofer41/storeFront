@@ -5,13 +5,19 @@ import Sidebar from './Sidebar'
 import Products from './Products'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowCircleLeft, faHeart} from '@fortawesome/free-solid-svg-icons'
+import {ProductData} from './ProductWidget'
 
-export default class Content extends Component <{addMeat: (id:string) => void}> {
+interface Props {
+    onCartIconClick: (product: ProductData) => void
+}
+
+export default class Content extends Component<Props> {
 
     // temporary solution
     state = {
         activePage: 1,
-        activeCategory: {name: '', id: ''}
+        activeCategory: {name: '', id: ''},
+        categoryListCopy: new Array<CategoryData>()
     }
 
     // temporary solution
@@ -28,10 +34,17 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
         this.setState({activeCategory: category})
     }
 
+    onCategoriesLoaded = (list: Array<CategoryData>) => {
+        // array --> JSON text --> array (copy list)
+        this.state.categoryListCopy = JSON.parse(JSON.stringify(list))
+    }
+
     render() {
         //let selectedCategory = 'pcmcat158900050008'
 
-        let page = <Categories categorySelected={this.onCategorySelected}/>
+        let page = <Categories categorySelected={this.onCategorySelected}
+                               onCategoriesLoaded={this.onCategoriesLoaded} />
+
         if (this.state.activePage === 2) {
             page = <>
                 <div style={btnBack} onClick={this.switch}>
@@ -39,8 +52,8 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
                     <a>Go back</a>
                 </div>
                 <div style={productsView}>
-                    <Sidebar/>
-                    <Products category={this.state.activeCategory} />
+                    <Sidebar categoryList={this.state.categoryListCopy} categorySelected={this.onCategorySelected} />
+                    <Products category={this.state.activeCategory} onCartIconClick={this.props.onCartIconClick} />
                 </div>
             </>
         }
@@ -49,8 +62,7 @@ export default class Content extends Component <{addMeat: (id:string) => void}> 
             <div style={content}>
                 <div style={header}>
                     <div style={logo}>Natalia and Coffe's store for awesome people</div>
-                    <h1 onClick={() => this.props.addMeat(this.id)}>Press me to add meat to the cart!</h1>
-                    <div style={subtitle}>The title says it all</div>
+                    <div style={subtitle}>The best home essentials</div>
                     <div>
                         <input style={search} type="text" placeholder="Search"/>
                     </div>
