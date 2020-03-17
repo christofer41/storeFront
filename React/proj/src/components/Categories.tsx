@@ -25,6 +25,8 @@ export default class Categories extends Component<Props> {
     constructor(props: Props) {
         super(props);
 
+        // To get data from BestBuy API axios needs function 'get'
+        // This function need only one param: URL link with API key (description in BestBuy docs: [BestBuy Open API](https://bestbuyapis.github.io/api-documentation/#overview)
         axios.get(categoriesApiUrl)
             .then((response) => {
                 if (response != null && response.data != null) {
