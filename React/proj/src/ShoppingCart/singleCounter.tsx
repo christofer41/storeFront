@@ -11,8 +11,8 @@ export default class Counter extends React.Component<{ counter:any, onDelete:any
                 <h2 style={styles}>{this.formatCount()}</h2>
             </div>
             <div style={buttonDiv}>
-                <button style={buttonStyle} onClick={() => this.props.onAdd(this.props.counter)}>Plus one</button>
-                <button style={buttonStyle} onClick={() => this.props.onMinus(this.props.counter, this.props.counter.id)}>Minus one</button>
+                <button style={buttonStyle} onClick={() => this.props.onAdd(this.props.counter)}>+</button>
+                <button style={buttonStyle} onClick={() => this.props.onMinus(this.props.counter, this.props.counter.id)}>-</button>
                 <button style={buttonStyle} onClick={() => this.props.onDelete(this.props.counter.id)}>Delete</button>
             </div>
         </div>

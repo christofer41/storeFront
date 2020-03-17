@@ -4,7 +4,7 @@ import Categories, {CategoryData} from './Categories'
 import Sidebar from './Sidebar'
 import Products from './Products'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faArrowCircleLeft, faHeart} from '@fortawesome/free-solid-svg-icons'
+import {faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons'
 import {ProductData} from './ProductWidget'
 
 interface Props {
